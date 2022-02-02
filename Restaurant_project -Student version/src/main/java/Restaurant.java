@@ -18,6 +18,7 @@ public class Restaurant {
     }
 
     public boolean isRestaurantOpen() {
+ if((getCurrentTime().isAfter(openingTime)) && (getCurrentTime().isBefore(closingTime))) {
         return true;
         }
      return false;
@@ -36,6 +37,14 @@ public class Restaurant {
                 return item;
         }
         return null;
+    }
+
+private int findItemPrice(Item itemName){
+        for(Item item: menu) {
+            if(item.getName().equals(itemName.getName()))
+                return item.getPrice();
+        }
+        return 0;
     }
 
     public void addToMenu(String name, int price) {
@@ -62,6 +71,22 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+public int orderValue(List<Item> list) {public int orderValue(List<Item> list) {
+		int total = 0;
+		
+		for(int i=0;i<list.size();i++) {
+			total+=findItemPrice(list.get(i));
+		}
+    	return total;
+    }
+		int total = 0;
+		
+		for(int i=0;i<list.size();i++) {
+			total+=findItemPrice(list.get(i));
+		}
+    	return total;
     }
 
 }
